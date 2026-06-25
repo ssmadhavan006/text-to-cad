@@ -1,0 +1,108 @@
+[
+  {
+    "description": "A simple rectangular box or cuboid block with length, width, and height dimensions.",
+    "parameters": {
+      "length": 100.0,
+      "width": 50.0,
+      "height": 30.0
+    },
+    "cot_explanation": "1. Create a workplane on the XY plane.\n2. Generate a box primitive with the specified length (100.0 mm), width (50.0 mm), and height (30.0 mm).\n3. Assign the resulting shape to the variable 'result'.",
+    "code": "import cadquery as cq\n\n# Parameters\nlength = 100.0\nwidth = 50.0\nheight = 30.0\n\n# Modeling\nresult = cq.Workplane(\"XY\").box(length, width, height)"
+  },
+  {
+    "description": "A cylindrical rod, pin, disk, or block with a specific radius (or diameter) and height.",
+    "parameters": {
+      "radius": 15.0,
+      "height": 80.0
+    },
+    "cot_explanation": "1. Create a workplane on the XY plane.\n2. Create a circle of the specified radius (15.0 mm).\n3. Extrude it along the Z-axis by the height (80.0 mm).\n4. Assign the resulting shape to 'result'.",
+    "code": "import cadquery as cq\n\n# Parameters\nradius = 15.0\nheight = 80.0\n\n# Modeling\nresult = cq.Workplane(\"XY\").circle(radius).extrude(height)"
+  },
+  {
+    "description": "A sphere primitive with a given radius, optionally with a boolean cut or flat slice to cut off the top part.",
+    "parameters": {
+      "radius": 20.0,
+      "slice_height": 5.0
+    },
+    "cot_explanation": "1. Create a sphere of the specified radius (20.0 mm) at the origin.\n2. To slice off the top by 5.0 mm, create a box cutter offset along Z by (radius - slice_height) = 15.0 mm.\n3. Subtract the cutter box from the sphere using a boolean cut operation.\n4. Assign the result to 'result'.",
+    "code": "import cadquery as cq\n\n# Parameters\nradius = 20.0\nslice_height = 5.0\n\n# Create the base sphere\nresult = cq.Workplane(\"XY\").sphere(radius)\n\n# Slicing subtraction\nif slice_height > 0:\n    # Create a box that covers the sliced top portion\n    cut_z_start = radius - slice_height\n    cutter = (\n        cq.Workplane(\"XY\")\n        .workplane(offset=cut_z_start)\n        .box(radius * 3.0, radius * 3.0, slice_height + 2.0, centered=(True, True, False))\n    )\n    result = result.cut(cutter)"
+  },
+  {
+    "description": "A complete or truncated cone (frustum) with base radius1, top radius2, and height.",
+    "parameters": {
+      "radius1": 30.0,
+      "radius2": 10.0,
+      "height": 40.0
+    },
+    "cot_explanation": "1. Create a workplane on the XY plane.\n2. Generate a cone primitive using cq.Solid.makeCone with base radius (30.0 mm), top radius (10.0 mm), and height (40.0 mm).\n3. Add the solid to the workplane.\n4. Assign the resulting shape to 'result'.",
+    "code": "import cadquery as cq\n\n# Parameters\nradius1 = 30.0\nradius2 = 10.0\nheight = 40.0\n\n# Modeling\ncone_solid = cq.Solid.makeCone(radius1, radius2, height)\nresult = cq.Workplane(\"XY\").add(cone_solid)"
+  },
+  {
+    "description": "A parametric spur gear with teeth, module, width, pressure angle, and center bore diameter.",
+    "parameters": {
+      "module": 2.0,
+      "teeth": 12,
+      "bore_diameter": 6.0,
+      "width": 10.0,
+      "pressure_angle": 20.0
+    },
+    "cot_explanation": "1. Calculate gear circles: Pitch radius (12.0 mm), outer radius (14.0 mm), root radius (9.5 mm).\n2. Create the main gear blank disk using root radius and extrude it by the width (10.0 mm).\n3. Define a trapezoidal tooth profile centered at angle 0.\n4. Loop through and union extruded, rotated tooth profiles for all teeth.\n5. Cut the center bore hole (diameter 6.0 mm) through the center.\n6. Assign the shape to 'result'.",
+    "code": "import cadquery as cq\nimport math\n\n# Parameters\nmodule = 2.0\nteeth = 12\nwidth = 10.0\nbore_diameter = 6.0\npressure_angle = 20.0\n\n# Calculated dimensions\npitch_radius = (module * teeth) / 2.0\nouter_radius = pitch_radius + module\nroot_radius = pitch_radius - 1.25 * module\n\n# Create the root disk\nresult = cq.Workplane(\"XY\").circle(root_radius).extrude(width)\n\n# Add teeth\ntooth_angle = 360.0 / teeth\nw_base = (math.pi * module) / 4.0\nw_top = w_base * 0.4\n\nfor i in range(teeth):\n    angle = i * tooth_angle\n    pts = [\n        (-w_base, root_radius),\n        (-w_top, outer_radius),\n        (w_top, outer_radius),\n        (w_base, root_radius)\n    ]\n    tooth = (\n        cq.Workplane(\"XY\")\n        .polyline(pts)\n        .close()\n        .extrude(width)\n        .rotate((0, 0, 0), (0, 0, 1), angle)\n    )\n    result = result.union(tooth)\n\n# Cut center bore\nif bore_diameter > 0:\n    result = result.faces(\">Z\").workplane().circle(bore_diameter / 2.0).cutThruAll()"
+  },
+  {
+    "description": "A mounting plate, bracket, or rectangular flange with rounded vertical corners (fillets) and mounting holes offset from the edges.",
+    "parameters": {
+      "length": 100.0,
+      "width": 50.0,
+      "thickness": 6.0,
+      "fillet_radius": 5.0,
+      "hole_diameter": 8.0,
+      "hole_offset": 15.0
+    },
+    "cot_explanation": "1. Generate a rectangular base plate box of size 100.0 x 50.0 x 6.0 mm.\n2. Select all vertical edges parallel to Z and apply fillets of radius 5.0 mm.\n3. Select the top face, project a construction rectangle inset by the hole offset (15.0 mm).\n4. Place holes of diameter 8.0 mm at each vertex of the construction rectangle and cut through the plate.\n5. Assign the final shape to 'result'.",
+    "code": "import cadquery as cq\n\n# Parameters\nlength = 100.0\nwidth = 50.0\nthickness = 6.0\nfillet_radius = 5.0\nhole_diameter = 8.0\nhole_offset = 15.0\n\n# Base plate\nresult = cq.Workplane(\"XY\").box(length, width, thickness)\n\n# Apply fillet on vertical edges (parallel to Z)\nif fillet_radius > 0:\n    result = result.edges(\"|Z\").fillet(fillet_radius)\n\n# Add mounting holes\nif hole_diameter > 0 and hole_offset > 0:\n    result = (\n        result.faces(\">Z\")\n        .workplane()\n        .rect(length - 2 * hole_offset, width - 2 * hole_offset, forConstruction=True)\n        .vertices()\n        .circle(hole_diameter / 2.0)\n        .cutThruAll()\n    )"
+  },
+  {
+    "description": "A revolved profile, bushing, ring, flange, or pulley created by revolving a 2D sketch outline around the central axis (Z-axis).",
+    "parameters": {
+      "inner_bore": 20.0,
+      "outer_diameter": 40.0,
+      "height": 15.0
+    },
+    "cot_explanation": "1. Create a workplane on the XZ plane.\n2. Define the cross-section coordinates for the 2D sketch representing half of the hollow cylinder wall.\n3. Points: inner radius (10.0 mm) and outer radius (20.0 mm) spanning from Z = 0 to Z = 15.0 mm.\n4. Close the sketch and revolve it 360 degrees around the Z axis.\n5. Assign the shape to 'result'.",
+    "code": "import cadquery as cq\n\n# Parameters\ninner_bore = 20.0\nouter_diameter = 40.0\nheight = 15.0\n\nr_inner = inner_bore / 2.0\nr_outer = outer_diameter / 2.0\n\n# 2D cross-section points on XZ plane\npts = [\n    (r_inner, 0.0),\n    (r_outer, 0.0),\n    (r_outer, height),\n    (r_inner, height)\n]\n\n# Revolve around Z-axis (from 0,0 to 0,1)\nresult = (\n    cq.Workplane(\"XZ\")\n    .polyline(pts)\n    .close()\n    .revolve(360, (0.0, 0.0, 0.0), (0.0, 0.0, 1.0))\n)"
+  },
+  {
+    "description": "A regular polygon profile plate (such as a hexagonal nut, hex flange, or octagonal plate) extruded to a certain thickness.",
+    "parameters": {
+      "n_sides": 6,
+      "radius": 50.0,
+      "thickness": 5.0
+    },
+    "cot_explanation": "1. Create a workplane on the XY plane.\n2. Draw a regular polygon with 6 sides (hexagon) and circumscribed diameter (radius * 2 = 100.0 mm).\n3. Extrude the polygon sketch by the thickness (5.0 mm).\n4. Assign the shape to 'result'.",
+    "code": "import cadquery as cq\n\n# Parameters\nn_sides = 6\nradius = 50.0\nthickness = 5.0\n\n# Modeling\nresult = cq.Workplane(\"XY\").polygon(n_sides, radius * 2.0).extrude(thickness)"
+  },
+  {
+    "description": "A circular flange or wheel with a circular or polar pattern array of holes drilled symmetrically around the center.",
+    "parameters": {
+      "diameter": 100.0,
+      "thickness": 10.0,
+      "hole_diameter": 8.0,
+      "pattern_radius": 35.0,
+      "n_holes": 6
+    },
+    "cot_explanation": "1. Create a flange disk of diameter 100.0 mm and extrude it by 10.0 mm.\n2. Select the top face and create a workplane.\n3. Generate a polar pattern array of 6 elements starting at angle 0.0 and spanning 360 degrees at radius 35.0 mm.\n4. Draw circles of radius 4.0 mm at each array point and cut through the flange.\n5. Assign the final shape to 'result'.",
+    "code": "import cadquery as cq\n\n# Parameters\ndiameter = 100.0\nthickness = 10.0\nhole_diameter = 8.0\npattern_radius = 35.0\nn_holes = 6\n\n# Create base circle\nresult = cq.Workplane(\"XY\").circle(diameter / 2.0).extrude(thickness)\n\n# Circular hole pattern\nif hole_diameter > 0 and n_holes > 0:\n    result = (\n        result.faces(\">Z\")\n        .workplane()\n        .polarArray(pattern_radius, 0.0, 360.0, n_holes)\n        .circle(hole_diameter / 2.0)\n        .cutThruAll()\n    )"
+  },
+  {
+    "description": "A flat bevel or chamfer applied to the edges of a shape.",
+    "parameters": {
+      "length": 40.0,
+      "width": 30.0,
+      "height": 20.0,
+      "chamfer_width": 2.0
+    },
+    "cot_explanation": "1. Create a box of size 40.0 x 30.0 x 20.0 mm.\n2. Select all top edges (parallel to Z-plane facing >Z) and apply a flat bevel (chamfer) of width 2.0 mm.\n3. Assign the shape to 'result'.",
+    "code": "import cadquery as cq\n\n# Parameters\nlength = 40.0\nwidth = 30.0\nheight = 20.0\nchamfer_width = 2.0\n\n# Base box\nresult = cq.Workplane(\"XY\").box(length, width, height)\n\n# Apply chamfer on top edges\nif chamfer_width > 0:\n    result = result.edges(\">Z\").chamfer(chamfer_width)"
+  }
+]
