@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.pytest_cache/
+.mypy_cache/
+
+# CAD outputs
+**/output/
+**/outputs/
+*.step
+*.stl
+*.glb
+
+# Environment
+.env
+.env.local
+
+# Node / React
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Databases / Vector Store
+**/chroma/
