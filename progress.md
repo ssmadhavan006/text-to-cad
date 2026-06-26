@@ -9,6 +9,26 @@
 
 ## Log
 
+### [2026-06-26 10:55] Phase 5: Static API Guardrail and Dynamic Allowlist Implemented
+**What changed:**
+- **Goal 1 (Dynamic Introspection Allowlist)**: Built `generate_allowlist.py` which dynamically inspects the installed `cadquery` module and generates `cad_api_allowlist.json` containing valid signatures/keyword arguments for `cq.Workplane`, `cq.Assembly`, `cq.Shape`, `cq.Solid`, and `cq.exporters`.
+- **Goal 2 (Pre-execution AST API Guardrail)**: Implemented `guardrail.py` to parse LLM-generated Python scripts into an AST, track receiver types, and validate that every call and its keyword arguments match the introspected allowlist. Hooked this validator into `executor.py` before worker pool execution. If the validator catches hallucinated arguments (like `centered` or `centerX` on `.workplane()`), it halts execution and returns a descriptive error instantly, bypassing worker latency and triggering self-correction.
+- **Goal 3 (Verification & Benchmarking)**: Created unit test suite `tests/test_api_guardrail.py` and validated that AST guardrail functions as expected. Ran the full integration test suite (all 21 tests passed). Re-ran the benchmarking harness (`benchmarking/run_benchmarks.py`) across all 10 test cases, achieving 100% success, 90% first-attempt success rate, and median latency under 11 seconds.
+**Why:** To catch LLM API hallucinations instantly without paying worker sandbox execution overhead, yielding faster and cleaner self-correction recovery loops.
+**Files touched:**
+- [backend/app/generate_allowlist.py](file:///d:/Coding/text-to-cad/backend/app/generate_allowlist.py)
+- [backend/app/cad_api_allowlist.json](file:///d:/Coding/text-to-cad/backend/app/cad_api_allowlist.json)
+- [backend/app/guardrail.py](file:///d:/Coding/text-to-cad/backend/app/guardrail.py)
+- [backend/app/executor.py](file:///d:/Coding/text-to-cad/backend/app/executor.py)
+- [tests/test_api_guardrail.py](file:///d:/Coding/text-to-cad/tests/test_api_guardrail.py)
+- [progress.md](file:///d:/Coding/text-to-cad/progress.md)
+- [rules.md](file:///d:/Coding/text-to-cad/rules.md)
+- [architecture.md](file:///d:/Coding/text-to-cad/architecture.md)
+- [benchmark_results.md](file:///d:/Coding/text-to-cad/benchmark_results.md)
+**Verification:** Verified via `pytest` (all 21 tests passed) and `run_benchmarks.py` (10/10 cases passed, p50 total latency = 10.66s, p95 = 20.10s).
+**Status:** ✅ working
+**Next step:** Completed all objectives. Commit and push the files individually to GitHub to satisfy the user's commit history requirements.
+
 ### [2026-06-25 21:45] Phase 4: Latency Diagnosis Completed
 **What changed:**
 - **Goal 1 (GPU Inference Diagnosis)**: Confirmed that Ollama `0.30.10` fails GPU bootstrap discovery on NVIDIA GeForce RTX 5070 (Blackwell architecture, Compute Capability 12.0) with exit code 1. Discovered that the installation was missing critical libraries `cublasLt64_12.dll` and `cudart64_12.dll` (had a corrupted `.tmp` file in the installer folder). Found and copied working versions of these DLLs from a PyTorch virtual environment to the Ollama directory, which resolved the DLL loading errors, but Ollama's discovery subprocess still exits with 1, confirming that this Ollama version does not support the Blackwell architecture or CUDA 13.2 driver configuration.
