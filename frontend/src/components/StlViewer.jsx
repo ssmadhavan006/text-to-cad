@@ -21,9 +21,9 @@ function Model({ url, isLightMode }) {
             child.castShadow = true;
             child.receiveShadow = true;
             child.material = new THREE.MeshStandardMaterial({
-              color: isLightMode ? "#3b82f6" : "#8A99AD",      // Cool steel blue in light mode, aluminum in dark mode
-              roughness: isLightMode ? 0.3 : 0.2,
-              metalness: isLightMode ? 0.6 : 0.8,
+              color: isLightMode ? "#3b82f6" : "#ffffff",      // Cool steel blue in light mode, white in dark mode
+              roughness: isLightMode ? 0.3 : 0.4,
+              metalness: isLightMode ? 0.6 : 0.1,
               side: THREE.DoubleSide
             });
             child.geometry.computeVertexNormals();
