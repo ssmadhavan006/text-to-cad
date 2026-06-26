@@ -9,6 +9,7 @@ import queue
 import threading
 from app.config import settings
 from app.schemas import ExecutionAttempt
+from app.guardrail import validate_cad_api
 
 logger = logging.getLogger(__name__)
 
@@ -65,6 +66,22 @@ def execute_code(code: str, attempt_num: int) -> ExecutionAttempt:
     Executes the generated CadQuery script in a persistent worker process.
     """
     output_id = str(uuid.uuid4())
+    
+    # Pre-execution static AST validation guardrail
+    validation_err = validate_cad_api(code)
+    if validation_err:
+        logger.warning(f"AST validation rejected script on attempt {attempt_num}: {validation_err}")
+        return ExecutionAttempt(
+            attempt=attempt_num,
+            code=code,
+            success=False,
+            stdout="",
+            stderr="",
+            error_message=validation_err,
+            output_id=output_id,
+            latency_generation=0.0,
+            latency_execution=0.0
+        )
     
     exec_latency = 0.0
     try:
