@@ -1,0 +1,1347 @@
+{
+  "Workplane": {
+    "__init__": [
+      "inPlane",
+      "origin",
+      "obj"
+    ],
+    "add": [
+      "obj"
+    ],
+    "all": [],
+    "ancestors": [
+      "kind",
+      "tag"
+    ],
+    "apply": [
+      "f"
+    ],
+    "bezier": [
+      "listOfXYTuple",
+      "forConstruction",
+      "includeCurrent",
+      "makeWire"
+    ],
+    "box": [
+      "length",
+      "width",
+      "height",
+      "centered",
+      "combine",
+      "clean"
+    ],
+    "cboreHole": [
+      "diameter",
+      "cboreDiameter",
+      "cboreDepth",
+      "depth",
+      "clean"
+    ],
+    "center": [
+      "x",
+      "y"
+    ],
+    "chamfer": [
+      "length",
+      "length2"
+    ],
+    "circle": [
+      "radius",
+      "forConstruction"
+    ],
+    "clean": [],
+    "close": [],
+    "combine": [
+      "clean",
+      "glue",
+      "tol"
+    ],
+    "compounds": [
+      "selector",
+      "tag"
+    ],
+    "consolidateWires": [],
+    "copyWorkplane": [
+      "obj"
+    ],
+    "cskHole": [
+      "diameter",
+      "cskDiameter",
+      "cskAngle",
+      "depth",
+      "clean"
+    ],
+    "cut": [
+      "toCut",
+      "clean",
+      "tol"
+    ],
+    "cutBlind": [
+      "until",
+      "clean",
+      "both",
+      "taper"
+    ],
+    "cutEach": [
+      "fcn",
+      "useLocalCoords",
+      "clean"
+    ],
+    "cutThruAll": [
+      "clean",
+      "taper"
+    ],
+    "cylinder": [
+      "height",
+      "radius",
+      "direct",
+      "angle",
+      "centered",
+      "combine",
+      "clean"
+    ],
+    "each": [
+      "callback",
+      "useLocalCoordinates",
+      "combine",
+      "clean"
+    ],
+    "eachpoint": [
+      "arg",
+      "useLocalCoordinates",
+      "combine",
+      "clean"
+    ],
+    "edges": [
+      "selector",
+      "tag"
+    ],
+    "ellipse": [
+      "x_radius",
+      "y_radius",
+      "rotation_angle",
+      "forConstruction"
+    ],
+    "ellipseArc": [
+      "x_radius",
+      "y_radius",
+      "angle1",
+      "angle2",
+      "rotation_angle",
+      "sense",
+      "forConstruction",
+      "startAtCurrent",
+      "makeWire"
+    ],
+    "end": [
+      "n"
+    ],
+    "export": [
+      "fname",
+      "tolerance",
+      "angularTolerance",
+      "unit",
+      "outputUnit",
+      "opt"
+    ],
+    "exportSvg": [
+      "fileName"
+    ],
+    "extrude": [
+      "until",
+      "combine",
+      "clean",
+      "both",
+      "taper"
+    ],
+    "faces": [
+      "selector",
+      "tag"
+    ],
+    "fillet": [
+      "radius"
+    ],
+    "filter": [
+      "f"
+    ],
+    "findSolid": [
+      "searchStack",
+      "searchParents"
+    ],
+    "first": [],
+    "hLine": [
+      "distance",
+      "forConstruction"
+    ],
+    "hLineTo": [
+      "xCoord",
+      "forConstruction"
+    ],
+    "hole": [
+      "diameter",
+      "depth",
+      "clean"
+    ],
+    "interpPlate": [
+      "surf_edges",
+      "surf_pts",
+      "thickness",
+      "combine",
+      "clean",
+      "degree",
+      "nbPtsOnCur",
+      "nbIter",
+      "anisotropy",
+      "tol2d",
+      "tol3d",
+      "tolAng",
+      "tolCurv",
+      "maxDeg",
+      "maxSegments"
+    ],
+    "intersect": [
+      "toIntersect",
+      "clean",
+      "tol"
+    ],
+    "invoke": [
+      "f"
+    ],
+    "item": [
+      "i"
+    ],
+    "largestDimension": [],
+    "last": [],
+    "line": [
+      "xDist",
+      "yDist",
+      "forConstruction"
+    ],
+    "lineTo": [
+      "x",
+      "y",
+      "forConstruction"
+    ],
+    "loft": [
+      "ruled",
+      "combine",
+      "clean"
+    ],
+    "map": [
+      "f"
+    ],
+    "mirror": [
+      "mirrorPlane",
+      "basePointVector",
+      "union"
+    ],
+    "mirrorX": [],
+    "mirrorY": [],
+    "move": [
+      "xDist",
+      "yDist"
+    ],
+    "moveTo": [
+      "x",
+      "y"
+    ],
+    "newObject": [
+      "objlist"
+    ],
+    "offset2D": [
+      "d",
+      "kind",
+      "forConstruction"
+    ],
+    "parametricCurve": [
+      "func",
+      "N",
+      "start",
+      "stop",
+      "tol",
+      "minDeg",
+      "maxDeg",
+      "smoothing",
+      "makeWire"
+    ],
+    "parametricSurface": [
+      "func",
+      "N",
+      "start",
+      "stop",
+      "tol",
+      "minDeg",
+      "maxDeg",
+      "smoothing"
+    ],
+    "placeSketch": [
+      "*args"
+    ],
+    "polarArray": [
+      "radius",
+      "startAngle",
+      "angle",
+      "count",
+      "fill",
+      "rotate"
+    ],
+    "polarLine": [
+      "distance",
+      "angle",
+      "forConstruction"
+    ],
+    "polarLineTo": [
+      "distance",
+      "angle",
+      "forConstruction"
+    ],
+    "polygon": [
+      "nSides",
+      "diameter",
+      "forConstruction",
+      "circumscribed"
+    ],
+    "polyline": [
+      "listOfXYTuple",
+      "forConstruction",
+      "includeCurrent"
+    ],
+    "pushPoints": [
+      "pntList"
+    ],
+    "radiusArc": [
+      "endPoint",
+      "radius",
+      "forConstruction"
+    ],
+    "rarray": [
+      "xSpacing",
+      "ySpacing",
+      "xCount",
+      "yCount",
+      "center"
+    ],
+    "rect": [
+      "xLen",
+      "yLen",
+      "centered",
+      "forConstruction"
+    ],
+    "revolve": [
+      "angleDegrees",
+      "axisStart",
+      "axisEnd",
+      "combine",
+      "clean"
+    ],
+    "rotate": [
+      "axisStartPoint",
+      "axisEndPoint",
+      "angleDegrees"
+    ],
+    "rotateAboutCenter": [
+      "axisEndPoint",
+      "angleDegrees"
+    ],
+    "sagittaArc": [
+      "endPoint",
+      "sag",
+      "forConstruction"
+    ],
+    "section": [
+      "height"
+    ],
+    "shell": [
+      "thickness",
+      "kind"
+    ],
+    "shells": [
+      "selector",
+      "tag"
+    ],
+    "siblings": [
+      "kind",
+      "level",
+      "tag"
+    ],
+    "size": [],
+    "sketch": [],
+    "slot2D": [
+      "length",
+      "diameter",
+      "angle"
+    ],
+    "solids": [
+      "selector",
+      "tag"
+    ],
+    "sort": [
+      "key"
+    ],
+    "sphere": [
+      "radius",
+      "direct",
+      "angle1",
+      "angle2",
+      "angle3",
+      "centered",
+      "combine",
+      "clean"
+    ],
+    "spline": [
+      "listOfXYTuple",
+      "tangents",
+      "periodic",
+      "parameters",
+      "scale",
+      "tol",
+      "forConstruction",
+      "includeCurrent",
+      "makeWire"
+    ],
+    "splineApprox": [
+      "points",
+      "tol",
+      "minDeg",
+      "maxDeg",
+      "smoothing",
+      "forConstruction",
+      "includeCurrent",
+      "makeWire"
+    ],
+    "split": [
+      "*args",
+      "**kwargs"
+    ],
+    "sweep": [
+      "path",
+      "multisection",
+      "sweepAlongWires",
+      "makeSolid",
+      "isFrenet",
+      "combine",
+      "clean",
+      "transition",
+      "normal",
+      "auxSpine"
+    ],
+    "tag": [
+      "name"
+    ],
+    "tangentArcPoint": [
+      "endpoint",
+      "forConstruction",
+      "relative"
+    ],
+    "text": [
+      "txt",
+      "fontsize",
+      "distance",
+      "combine",
+      "clean",
+      "font",
+      "fontPath",
+      "kind",
+      "halign",
+      "valign"
+    ],
+    "threePointArc": [
+      "point1",
+      "point2",
+      "forConstruction"
+    ],
+    "toOCC": [],
+    "toPending": [],
+    "toSvg": [
+      "opts"
+    ],
+    "transformed": [
+      "rotate",
+      "offset"
+    ],
+    "translate": [
+      "vec"
+    ],
+    "twistExtrude": [
+      "distance",
+      "angleDegrees",
+      "combine",
+      "clean"
+    ],
+    "union": [
+      "toUnion",
+      "clean",
+      "glue",
+      "tol"
+    ],
+    "vLine": [
+      "distance",
+      "forConstruction"
+    ],
+    "vLineTo": [
+      "yCoord",
+      "forConstruction"
+    ],
+    "val": [],
+    "vals": [],
+    "vertices": [
+      "selector",
+      "tag"
+    ],
+    "wedge": [
+      "dx",
+      "dy",
+      "dz",
+      "xmin",
+      "zmin",
+      "xmax",
+      "zmax",
+      "pnt",
+      "dir",
+      "centered",
+      "combine",
+      "clean"
+    ],
+    "wire": [
+      "forConstruction"
+    ],
+    "wires": [
+      "selector",
+      "tag"
+    ],
+    "workplane": [
+      "offset",
+      "invert",
+      "centerOption",
+      "origin"
+    ],
+    "workplaneFromTagged": [
+      "name"
+    ]
+  },
+  "Assembly": {
+    "__init__": [
+      "obj",
+      "loc",
+      "name",
+      "color",
+      "material",
+      "metadata"
+    ],
+    "add": [
+      "arg",
+      "**kwargs"
+    ],
+    "addSubshape": [
+      "s",
+      "name",
+      "color",
+      "layer"
+    ],
+    "constrain": [
+      "*args",
+      "param"
+    ],
+    "export": [
+      "path",
+      "exportType",
+      "mode",
+      "tolerance",
+      "angularTolerance",
+      "unit",
+      "outputUnit",
+      "**kwargs"
+    ],
+    "importStep": [
+      "path",
+      "unit"
+    ],
+    "load": [
+      "path",
+      "importType",
+      "unit"
+    ],
+    "remove": [
+      "name"
+    ],
+    "save": [
+      "path",
+      "exportType",
+      "mode",
+      "tolerance",
+      "angularTolerance",
+      "**kwargs"
+    ],
+    "solve": [
+      "verbosity"
+    ],
+    "toCompound": [],
+    "traverse": []
+  },
+  "Shape": {
+    "Area": [],
+    "BoundingBox": [
+      "tolerance"
+    ],
+    "Center": [],
+    "CenterOfBoundBox": [
+      "tolerance"
+    ],
+    "Closed": [],
+    "CombinedCenter": [
+      "objects"
+    ],
+    "CombinedCenterOfBoundBox": [
+      "objects"
+    ],
+    "CompSolids": [],
+    "Compounds": [],
+    "Edges": [],
+    "Faces": [],
+    "ShapeType": [],
+    "Shells": [],
+    "Solids": [],
+    "Vertices": [],
+    "Volume": [
+      "tol"
+    ],
+    "Wires": [],
+    "__init__": [
+      "obj"
+    ],
+    "ancestors": [
+      "ctx",
+      "kind"
+    ],
+    "cast": [
+      "obj",
+      "forConstruction"
+    ],
+    "centerOfMass": [
+      "obj"
+    ],
+    "clean": [],
+    "computeMass": [
+      "obj",
+      "tol"
+    ],
+    "copy": [
+      "mesh"
+    ],
+    "cut": [
+      "*args",
+      "tol"
+    ],
+    "distance": [
+      "other"
+    ],
+    "distances": [
+      "*args"
+    ],
+    "edge": [
+      "selector"
+    ],
+    "edges": [
+      "selector"
+    ],
+    "export": [
+      "fname",
+      "tolerance",
+      "angularTolerance",
+      "unit",
+      "outputUnit",
+      "opt"
+    ],
+    "exportBin": [
+      "f"
+    ],
+    "exportBrep": [
+      "f"
+    ],
+    "exportStep": [
+      "fileName",
+      "unit",
+      "outputUnit",
+      "**kwargs"
+    ],
+    "exportStl": [
+      "fileName",
+      "tolerance",
+      "angularTolerance",
+      "ascii",
+      "relative",
+      "parallel"
+    ],
+    "face": [
+      "selector"
+    ],
+    "faces": [
+      "selector"
+    ],
+    "facesIntersectedByLine": [
+      "point",
+      "axis",
+      "tol",
+      "direction"
+    ],
+    "filter": [
+      "f"
+    ],
+    "fix": [],
+    "fuse": [
+      "*args",
+      "glue",
+      "tol"
+    ],
+    "geomType": [],
+    "hashCode": [],
+    "importBin": [
+      "f"
+    ],
+    "importBrep": [
+      "f"
+    ],
+    "intersect": [
+      "*args",
+      "tol"
+    ],
+    "isEqual": [
+      "other"
+    ],
+    "isNull": [],
+    "isSame": [
+      "other"
+    ],
+    "isValid": [],
+    "locate": [
+      "loc"
+    ],
+    "located": [
+      "loc"
+    ],
+    "location": [],
+    "matrixOfInertia": [
+      "obj"
+    ],
+    "mesh": [
+      "tolerance",
+      "angularTolerance"
+    ],
+    "mirror": [
+      "mirrorPlane",
+      "basePointVector"
+    ],
+    "move": [
+      "loc"
+    ],
+    "moved": [
+      "s"
+    ],
+    "remove": [
+      "*args"
+    ],
+    "replace": [
+      "old",
+      "*args"
+    ],
+    "reverse": [],
+    "rotate": [
+      "startVector",
+      "endVector",
+      "angleDegrees"
+    ],
+    "scale": [
+      "factor"
+    ],
+    "shell": [
+      "selector"
+    ],
+    "shells": [
+      "selector"
+    ],
+    "siblings": [
+      "ctx",
+      "kind",
+      "level"
+    ],
+    "size": [],
+    "solid": [
+      "selector"
+    ],
+    "solids": [
+      "selector"
+    ],
+    "sort": [
+      "key"
+    ],
+    "split": [
+      "*args"
+    ],
+    "tessellate": [
+      "tolerance",
+      "angularTolerance"
+    ],
+    "toLocs": [],
+    "toNURBS": [],
+    "toSplines": [
+      "degree",
+      "tolerance",
+      "nurbs"
+    ],
+    "toVtkPolyData": [
+      "tolerance",
+      "angularTolerance",
+      "normals"
+    ],
+    "transformGeometry": [
+      "tMatrix"
+    ],
+    "transformShape": [
+      "tMatrix"
+    ],
+    "translate": [
+      "vector"
+    ],
+    "vertex": [
+      "selector"
+    ],
+    "vertices": [
+      "selector"
+    ],
+    "wire": [
+      "selector"
+    ],
+    "wires": [
+      "selector"
+    ],
+    "addCavity": [
+      "*args"
+    ],
+    "chamfer": [
+      "length",
+      "length2",
+      "edgeList"
+    ],
+    "dprism": [
+      "basis",
+      "profiles",
+      "depth",
+      "taper",
+      "upToFace",
+      "thruAll",
+      "additive"
+    ],
+    "extrudeLinear": [
+      "outerWire",
+      "innerWires",
+      "vecNormal",
+      "taper"
+    ],
+    "extrudeLinearWithRotation": [
+      "outerWire",
+      "innerWires",
+      "vecCenter",
+      "vecNormal",
+      "angleDegrees"
+    ],
+    "fillet": [
+      "radius",
+      "edgeList"
+    ],
+    "hollow": [
+      "faceList",
+      "thickness",
+      "tolerance",
+      "kind"
+    ],
+    "innerShells": [],
+    "isInside": [
+      "point",
+      "tolerance"
+    ],
+    "isSolid": [
+      "obj"
+    ],
+    "makeBox": [
+      "length",
+      "width",
+      "height",
+      "pnt",
+      "dir"
+    ],
+    "makeCone": [
+      "radius1",
+      "radius2",
+      "height",
+      "pnt",
+      "dir",
+      "angleDegrees"
+    ],
+    "makeCylinder": [
+      "radius",
+      "height",
+      "pnt",
+      "dir",
+      "angleDegrees"
+    ],
+    "makeLoft": [
+      "listOfWire",
+      "ruled"
+    ],
+    "makeSolid": [
+      "shell"
+    ],
+    "makeSphere": [
+      "radius",
+      "pnt",
+      "dir",
+      "angleDegrees1",
+      "angleDegrees2",
+      "angleDegrees3"
+    ],
+    "makeTorus": [
+      "radius1",
+      "radius2",
+      "pnt",
+      "dir",
+      "angleDegrees1",
+      "angleDegrees2"
+    ],
+    "makeWedge": [
+      "dx",
+      "dy",
+      "dz",
+      "xmin",
+      "zmin",
+      "xmax",
+      "zmax",
+      "pnt",
+      "dir"
+    ],
+    "outerShell": [],
+    "revolve": [
+      "outerWire",
+      "innerWires",
+      "angleDegrees",
+      "axisStart",
+      "axisEnd"
+    ],
+    "sweep": [
+      "outerWire",
+      "innerWires",
+      "path",
+      "makeSolid",
+      "isFrenet",
+      "mode",
+      "transitionMode"
+    ],
+    "sweep_multi": [
+      "profiles",
+      "path",
+      "makeSolid",
+      "isFrenet",
+      "mode"
+    ]
+  },
+  "Solid": {
+    "Area": [],
+    "BoundingBox": [
+      "tolerance"
+    ],
+    "Center": [],
+    "CenterOfBoundBox": [
+      "tolerance"
+    ],
+    "Closed": [],
+    "CombinedCenter": [
+      "objects"
+    ],
+    "CombinedCenterOfBoundBox": [
+      "objects"
+    ],
+    "CompSolids": [],
+    "Compounds": [],
+    "Edges": [],
+    "Faces": [],
+    "ShapeType": [],
+    "Shells": [],
+    "Solids": [],
+    "Vertices": [],
+    "Volume": [
+      "tol"
+    ],
+    "Wires": [],
+    "__init__": [
+      "obj"
+    ],
+    "addCavity": [
+      "*args"
+    ],
+    "ancestors": [
+      "ctx",
+      "kind"
+    ],
+    "cast": [
+      "obj",
+      "forConstruction"
+    ],
+    "centerOfMass": [
+      "obj"
+    ],
+    "chamfer": [
+      "length",
+      "length2",
+      "edgeList"
+    ],
+    "clean": [],
+    "computeMass": [
+      "obj",
+      "tol"
+    ],
+    "copy": [
+      "mesh"
+    ],
+    "cut": [
+      "*args",
+      "tol"
+    ],
+    "distance": [
+      "other"
+    ],
+    "distances": [
+      "*args"
+    ],
+    "dprism": [
+      "basis",
+      "profiles",
+      "depth",
+      "taper",
+      "upToFace",
+      "thruAll",
+      "additive"
+    ],
+    "edge": [
+      "selector"
+    ],
+    "edges": [
+      "selector"
+    ],
+    "export": [
+      "fname",
+      "tolerance",
+      "angularTolerance",
+      "unit",
+      "outputUnit",
+      "opt"
+    ],
+    "exportBin": [
+      "f"
+    ],
+    "exportBrep": [
+      "f"
+    ],
+    "exportStep": [
+      "fileName",
+      "unit",
+      "outputUnit",
+      "**kwargs"
+    ],
+    "exportStl": [
+      "fileName",
+      "tolerance",
+      "angularTolerance",
+      "ascii",
+      "relative",
+      "parallel"
+    ],
+    "extrudeLinear": [
+      "outerWire",
+      "innerWires",
+      "vecNormal",
+      "taper"
+    ],
+    "extrudeLinearWithRotation": [
+      "outerWire",
+      "innerWires",
+      "vecCenter",
+      "vecNormal",
+      "angleDegrees"
+    ],
+    "face": [
+      "selector"
+    ],
+    "faces": [
+      "selector"
+    ],
+    "facesIntersectedByLine": [
+      "point",
+      "axis",
+      "tol",
+      "direction"
+    ],
+    "fillet": [
+      "radius",
+      "edgeList"
+    ],
+    "filter": [
+      "f"
+    ],
+    "fix": [],
+    "fuse": [
+      "*args",
+      "glue",
+      "tol"
+    ],
+    "geomType": [],
+    "hashCode": [],
+    "hollow": [
+      "faceList",
+      "thickness",
+      "tolerance",
+      "kind"
+    ],
+    "importBin": [
+      "f"
+    ],
+    "importBrep": [
+      "f"
+    ],
+    "innerShells": [],
+    "intersect": [
+      "*args",
+      "tol"
+    ],
+    "isEqual": [
+      "other"
+    ],
+    "isInside": [
+      "point",
+      "tolerance"
+    ],
+    "isNull": [],
+    "isSame": [
+      "other"
+    ],
+    "isSolid": [
+      "obj"
+    ],
+    "isValid": [],
+    "locate": [
+      "loc"
+    ],
+    "located": [
+      "loc"
+    ],
+    "location": [],
+    "makeBox": [
+      "length",
+      "width",
+      "height",
+      "pnt",
+      "dir"
+    ],
+    "makeCone": [
+      "radius1",
+      "radius2",
+      "height",
+      "pnt",
+      "dir",
+      "angleDegrees"
+    ],
+    "makeCylinder": [
+      "radius",
+      "height",
+      "pnt",
+      "dir",
+      "angleDegrees"
+    ],
+    "makeLoft": [
+      "listOfWire",
+      "ruled"
+    ],
+    "makeSolid": [
+      "shell"
+    ],
+    "makeSphere": [
+      "radius",
+      "pnt",
+      "dir",
+      "angleDegrees1",
+      "angleDegrees2",
+      "angleDegrees3"
+    ],
+    "makeTorus": [
+      "radius1",
+      "radius2",
+      "pnt",
+      "dir",
+      "angleDegrees1",
+      "angleDegrees2"
+    ],
+    "makeWedge": [
+      "dx",
+      "dy",
+      "dz",
+      "xmin",
+      "zmin",
+      "xmax",
+      "zmax",
+      "pnt",
+      "dir"
+    ],
+    "matrixOfInertia": [
+      "obj"
+    ],
+    "mesh": [
+      "tolerance",
+      "angularTolerance"
+    ],
+    "mirror": [
+      "mirrorPlane",
+      "basePointVector"
+    ],
+    "move": [
+      "loc"
+    ],
+    "moved": [
+      "s"
+    ],
+    "outerShell": [],
+    "remove": [
+      "*args"
+    ],
+    "replace": [
+      "old",
+      "*args"
+    ],
+    "reverse": [],
+    "revolve": [
+      "outerWire",
+      "innerWires",
+      "angleDegrees",
+      "axisStart",
+      "axisEnd"
+    ],
+    "rotate": [
+      "startVector",
+      "endVector",
+      "angleDegrees"
+    ],
+    "scale": [
+      "factor"
+    ],
+    "shell": [
+      "selector"
+    ],
+    "shells": [
+      "selector"
+    ],
+    "siblings": [
+      "ctx",
+      "kind",
+      "level"
+    ],
+    "size": [],
+    "solid": [
+      "selector"
+    ],
+    "solids": [
+      "selector"
+    ],
+    "sort": [
+      "key"
+    ],
+    "split": [
+      "*args"
+    ],
+    "sweep": [
+      "outerWire",
+      "innerWires",
+      "path",
+      "makeSolid",
+      "isFrenet",
+      "mode",
+      "transitionMode"
+    ],
+    "sweep_multi": [
+      "profiles",
+      "path",
+      "makeSolid",
+      "isFrenet",
+      "mode"
+    ],
+    "tessellate": [
+      "tolerance",
+      "angularTolerance"
+    ],
+    "toLocs": [],
+    "toNURBS": [],
+    "toSplines": [
+      "degree",
+      "tolerance",
+      "nurbs"
+    ],
+    "toVtkPolyData": [
+      "tolerance",
+      "angularTolerance",
+      "normals"
+    ],
+    "transformGeometry": [
+      "tMatrix"
+    ],
+    "transformShape": [
+      "tMatrix"
+    ],
+    "translate": [
+      "vector"
+    ],
+    "vertex": [
+      "selector"
+    ],
+    "vertices": [
+      "selector"
+    ],
+    "wire": [
+      "selector"
+    ],
+    "wires": [
+      "selector"
+    ]
+  },
+  "exporters": {
+    "cast": [
+      "typ",
+      "val"
+    ],
+    "compound": [
+      "*args"
+    ],
+    "export": [
+      "w",
+      "fname",
+      "exportType",
+      "tolerance",
+      "angularTolerance",
+      "unit",
+      "outputUnit",
+      "opt"
+    ],
+    "exportDXF": [
+      "w",
+      "fname",
+      "approx",
+      "tolerance",
+      "doc_units"
+    ],
+    "exportVTP": [
+      "shape",
+      "fname",
+      "tolerance",
+      "angularTolerance"
+    ],
+    "getSVG": [
+      "shape",
+      "opts"
+    ]
+  }
+}
