@@ -19,7 +19,7 @@ function Model({ url, isLightMode }) {
         gltf.scene.traverse((child) => {
           if (child.isMesh) {
             child.castShadow = true;
-            child.receiveShadow = true;
+            child.receiveShadow = false; // Disable self-shadowing to completely eliminate shadow acne/stripes
             child.material = new THREE.MeshStandardMaterial({
               color: isLightMode ? "#3b82f6" : "#ffffff",      // Cool steel blue in light mode, white in dark mode
               roughness: isLightMode ? 0.3 : 0.4,
@@ -75,13 +75,14 @@ export default function StlViewer({ url, loading, isLightMode }) {
         <color attach="background" args={[isLightMode ? "#f8fafc" : "#0d0e12"]} />
         <ambientLight intensity={isLightMode ? 0.7 : 0.5} />
         
-        {/* Front Directional Light */}
+        {/* Front Directional Light with bias to prevent shadow acne */}
         <directionalLight
           position={[30, 40, 20]}
           intensity={isLightMode ? 1.0 : 0.8}
           castShadow
           shadow-mapSize-width={1024}
           shadow-mapSize-height={1024}
+          shadow-bias={-0.0005}
         />
         
         {/* Back/Fill Directional Light */}
