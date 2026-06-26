@@ -10,8 +10,11 @@ graph TD
     Gate -->|Reject| User
     Gate -->|Pass| Coder[Code Generator backend/app/code_generator.py]
     Coder -->|Draft Python| Exec[Executor backend/app/executor.py]
-    Exec -->|Success| Export[Exporter backend/app/executor.py]
-    Exec -->|Fail + Traceback| Retry{Retry count < 3?}
+    Exec -->|Validate Code via AST| Guard{API Guardrail app/guardrail.py}
+    Guard -->|Invalid| Retry{Retry count < 3?}
+    Guard -->|Valid| Sandbox[Worker Sandbox execution]
+    Sandbox -->|Success| Export[Exporter backend/app/executor.py]
+    Sandbox -->|Fail + Traceback| Retry
     Retry -->|Yes| Coder
     Retry -->|No| User
     Export -->|GLB Mesh| Viewer[React 3D Viewer frontend/src/App.jsx]
@@ -56,7 +59,8 @@ We classify every supported shape/operation into three states of verification:
 - **GLB Mesh Preview vs Exact STEP Delivery**: The engine outputs exact B-Rep geometry via the **STEP** file (preserving original CAD math for downstream machining). However, to prevent rough, faceted "golf ball" rendering in three.js, the executor also outputs a size-aware binary **GLB/glTF** preview mesh using custom deflection tolerances (`tolerance = max(1e-4, min(0.5, diag * 0.0015))` and `angularTolerance = 0.05`) rendered with smooth shading.
 - **Dynamic few-shot RAG**: Replaced static system prompt examples with dynamic retrieval from a local example corpus using ChromaDB and Ollama embeddings.
 - **In-Memory Session Store**: Multi-turn modifications are driven by an in-memory session dictionary on the backend. This matches raw parameter history and merges incoming edits before running them through the feasibility gate and code generator.
+- **Pre-execution AST API Guardrail**: Statically validates generated CAD scripts using python's `ast` parser before executing them in the sandboxed worker process. It intercepts hallucinated methods and parameters (e.g. `.workplane(centered=True)`) and feeds error messages directly to the LLM correction loop. A full Constructive Solid Geometry (CSG) JSON intermediate representation rewrite was deferred because the lightweight AST guardrail successfully intercepting API errors is highly reliable, less risky, and perfectly targeted for the current 7B model capabilities.
 
 ## 5. Implementation Status
 
-- **Complete**: FastAPI Backend, React Frontend + Monaco Code Panel + Three.js 3D GLB viewer. ChromaDB vector database and dynamic few-shot retrieval. Generalization test suite. Latency benchmarking harness. Stateful multi-turn iterative editing.
+- **Complete**: FastAPI Backend, React Frontend + Monaco Code Panel + Three.js 3D GLB viewer. ChromaDB vector database and dynamic few-shot retrieval. Generalization test suite. Latency benchmarking harness. Stateful multi-turn iterative editing. Static AST API Guardrail with introspected CadQuery allowlist.
