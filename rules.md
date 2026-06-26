@@ -41,7 +41,8 @@ These rules are seed constraints from the project specification, plus local addi
 - Do ask before: changing the tech stack choices in Section 2, expanding the feature catalog in Section 1, adding new heavyweight infrastructure (databases, containers, services) not already listed, or running anything covered by the long-running-command policy in 4.1.
 
 ### 4.6 Local CadQuery Rules & Footguns
-*(None yet. Add to this section when API exceptions or geometry failures are encountered).*
+- **Dynamic Allowlist Generation**: Any API validation allowlist (like `cad_api_allowlist.json`) must be dynamically generated via introspection scripts (like `generate_allowlist.py`) using python's `inspect` module, rather than manually authored. This ensures consistency and makes it easy to update validation rules when the underlying library is upgraded.
+- **AST Validator Coverage**: When calling `.workplane()` on CadQuery objects, do not pass arguments like `centered`, `centerX`, or `centerY`, as they are not accepted by `cq.Workplane.workplane()`. The static AST validator will reject them before execution.
 
 ### 4.7 Feature Verification Policy
 - A feature may only be marked "Verified" in `architecture.md` after it has a passing test using a prompt structurally distinct from any worked example in the corpus — not merely a parameter variation of one. Marking something supported based on a single hand-matched demo case is exactly the kind of unverified claim this project must avoid.
